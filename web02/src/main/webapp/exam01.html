@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+<h1>게시판</h1>
+<table id="boardTable" border="1">
+<tr>
+	<th>번호</th>
+	<th>제목</th>
+	<th>작성자</th>
+	<th>작성일</th>
+	<th>조회수</th>
+</tr>
+<tr class="dataRow">
+	<td>1</td>
+	<td>제목입니다.</td>
+	<td>홍길동</td>
+	<td>2015-1-1</td>
+	<td>128</td>
+</tr>
+</table>
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/handlebars.min.js"></script>
+<script type="text/javascript" src="js/handlebars.runtime.min.js"></script>
+<script>
+$.getJSON('jsp/BoardList.jsp', function(list){
+	var tr;
+	
+	$('.dataRow').remove();
+	
+	for (var i in list) {
+		tr = "<tr class='dataRow'>" +
+			"<td>" + list[i].no + "</td>" +
+			"<td>" + list[i].title + "</td>" +
+			"<td>" + list[i].writer + "</td>" +
+			"<td>" + list[i].cd + "</td>" +
+			"<td>" + list[i].views + "</td>" +
+		    "</tr>";
+		$(tr).appendTo("#boardTable")    
+	}
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

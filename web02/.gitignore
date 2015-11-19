@@ -1,0 +1,7 @@
+/bin/
+/.gradle/
+/.settings/
+/.classpath
+/.svn/
+/build/
+/node_modules/

@@ -22,24 +22,32 @@
 </tr>
 </table>
 
+<script id="boardTrTemplate" 
+   type="text/x-handlebars-template">
+{{#each boards}}
+<tr class="dataRow">
+	<td>^^{{no}}</td>
+	<td>^^{{title}}</td>
+	<td>^^{{writer}}</td>
+	<td>^^{{cd}}</td>
+	<td>^^{{views}}</td>
+</tr>
+{{/each}}
+</script>
+
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="js/handlebars.min.js"></script>
 <script>
-$.getJSON('jsp/BoardList.jsp', function(list){
+$.getJSON('jsp/BoardList2.jsp', function(obj){
 	var tr;
+	var templateSource = $("#boardTrTemplate").html();
+	var template = Handlebars.compile(templateSource);
 	
 	$('.dataRow').remove();
 	
-	for (var i in list) {
-		tr = "<tr class='dataRow'>" +
-			"<td>" + list[i].no + "</td>" +
-			"<td>" + list[i].title + "</td>" +
-			"<td>" + list[i].writer + "</td>" +
-			"<td>" + list[i].cd + "</td>" +
-			"<td>" + list[i].views + "</td>" +
-		    "</tr>";
-		$(tr).appendTo("#boardTable")    
-	}
+	tr = template(obj);
+	console.log(tr);
+	$(tr).appendTo("#boardTable")    
 });
 </script>
 </body>
